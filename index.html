@@ -92,6 +92,10 @@ h2{margin:6px 0 18px;font:600 clamp(40px,6vw,56px)/.95 var(--display);letter-spa
 .srv-meta dd{margin:4px 0 0;font:600 22px/1 var(--display);letter-spacing:.03em}
 @media (max-width:760px){.srv{grid-template-columns:auto minmax(0,1fr)}.srv-meta,.srv .btn{grid-column:1/-1}}
 .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card.disc{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;border-color:var(--cyan);background:radial-gradient(420px 180px at 0% 50%,rgba(46,230,255,.16),transparent 70%),var(--surface)}
+.card.disc h3{margin:0 0 4px;color:var(--cyan)}
+.card.disc svg{width:40px;height:40px}
+@media (max-width:760px){.card.disc{grid-template-columns:auto minmax(0,1fr)}.card.disc #discordWhy{grid-column:1/-1}}
 .card.solo{border-color:var(--pink);background:radial-gradient(260px 160px at 100% 0%,rgba(255,62,165,.25),transparent 70%),var(--surface)}
 .card.solo svg{color:var(--pink);filter:drop-shadow(0 0 8px rgba(255,62,165,.7))}
 .card.solo h3{color:var(--pink)}
@@ -210,6 +214,12 @@ h1 .word{animation:flicker 5s linear infinite}
         <h3>Seul, c'est la mort</h3>
         <p>Sur Rob Run, jouer seul, c'est se faire dépouiller au premier coin de rue. En clan, on se couvre.</p>
       </div>
+      <div class="card disc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4Z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg>
+        <div class="disc-txt"><h3>Un Discord pour grouper vite</h3>
+        <p>Tu te connectes, tu dis que tu es dispo, et tu as un groupe en quelques minutes. Plus besoin de chercher des coéquipiers en jeu.</p></div>
+        <span id="discordWhy"></span>
+      </div>
     </div>
   </section>
 
@@ -262,6 +272,7 @@ document.getElementById('pitch').textContent=MFK.pitch;
 document.getElementById('discordTop').innerHTML=btn('sm','Discord');
 document.getElementById('discordHero').innerHTML=btn('','Rejoindre le Discord');
 document.getElementById('discordJoin').innerHTML=btn('','Rejoindre le Discord');
+document.getElementById('discordWhy').innerHTML=btn('','Trouver un groupe');
 document.getElementById('joinText').textContent=ok?"Le Discord est ouvert : présente-toi avec ton pseudo en jeu, tes horaires et le rôle que tu préfères.":"Le Discord ouvre bientôt. Dès qu'il est en ligne, le bouton s'active ici : présente-toi avec ton pseudo en jeu, tes horaires et le rôle que tu préfères.";
 document.getElementById('discordCode').textContent=ok?MFK.discord:'';
 // Bloque copier, couper, glisser et le menu clic droit
