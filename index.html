@@ -97,6 +97,8 @@ h2{margin:6px 0 18px;font:600 clamp(40px,6vw,56px)/.95 var(--display);letter-spa
 .card.solo h3{color:var(--pink)}
 @media (max-width:900px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.why{grid-template-columns:minmax(0,1fr)}}
+/* Texte non sélectionnable (anti copier-coller) */
+body,body *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none}
 footer{border-top:1px solid var(--line);padding-block:20px 28px;color:var(--muted);font-size:14px}
 
 /* Animations */
@@ -262,6 +264,9 @@ document.getElementById('discordHero').innerHTML=btn('','Rejoindre le Discord');
 document.getElementById('discordJoin').innerHTML=btn('','Rejoindre le Discord');
 document.getElementById('joinText').textContent=ok?"Le Discord est ouvert : présente-toi avec ton pseudo en jeu, tes horaires et le rôle que tu préfères.":"Le Discord ouvre bientôt. Dès qu'il est en ligne, le bouton s'active ici : présente-toi avec ton pseudo en jeu, tes horaires et le rôle que tu préfères.";
 document.getElementById('discordCode').textContent=ok?MFK.discord:'';
+// Bloque copier, couper, glisser et le menu clic droit
+['copy','cut','dragstart','contextmenu','selectstart'].forEach(ev=>document.addEventListener(ev,e=>e.preventDefault()));
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['c','x','a','u','s'].includes(e.key.toLowerCase()))e.preventDefault();});
 {const s=MFK.serveur,n=document.getElementById('srvNom'),c=document.getElementById('srvCopy');
   n.textContent=s.nom||'Annoncé bientôt'; n.classList.toggle('wait',!s.nom);
   document.getElementById('srvReg').textContent=s.region||'À venir';
