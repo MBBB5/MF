@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>[MFK] Mother Funcker</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout : page d'annonce en une colonne, gros emblème néon en ouverture, puis projet, étapes, rôles et appel Discord. Thème sombre unique (ville de nuit). */
+:root{
+  color-scheme:dark;
+  --bg:#0b0917;--surface:#14102a;--surface2:#1d1838;--line:#30275a;
+  --fg:#f6f1ff;--muted:#a99dca;
+  --pink:#ff3ea5;--cyan:#2ee6ff;--gold:#ffd166;
+  --display:"Teko","Arial Narrow",sans-serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--body);
+  background-image:radial-gradient(900px 480px at 12% -8%,rgba(122,46,210,.38),transparent 62%),radial-gradient(800px 420px at 100% 4%,rgba(18,104,140,.38),transparent 60%)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--cyan)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* En-tête */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.tag{font:600 20px/1 var(--display);letter-spacing:.08em;color:var(--fg)}
+.tag b{color:var(--pink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 21px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:13px 18px 11px;border-radius:6px;border:0;cursor:pointer}
+.btn svg{width:22px;height:22px;flex:none}
+.btn.main{background:var(--cyan);color:#03121a;box-shadow:0 0 22px rgba(46,230,255,.45)}
+.btn.main:hover{box-shadow:0 0 32px rgba(46,230,255,.7)}
+.btn.ghost{background:none;color:var(--fg);border:1px solid var(--line)}
+.btn.off{background:none;color:var(--muted);border:1px dashed var(--muted);cursor:default;box-shadow:none}
+.btn.sm{font-size:17px;padding:9px 12px 7px}
+
+/* Ouverture */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;align-items:center;padding-block:28px 56px}
+.status{display:inline-flex;align-items:center;gap:8px;font:600 17px/1 var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,209,102,.45);border-radius:999px;padding:7px 12px 5px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:pulse 1.6s ease-in-out infinite}
+h1{margin:16px 0 0;font:700 clamp(84px,15vw,168px)/.82 var(--display);letter-spacing:.02em;color:#fff;
+  text-shadow:0 0 6px #fff,0 0 18px var(--pink),0 0 42px var(--pink),0 0 84px rgba(255,62,165,.5)}
+h1 .br{color:var(--pink);text-shadow:0 0 14px var(--pink)}
+.full{margin:6px 0 0;font:600 clamp(30px,4.6vw,46px)/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);text-shadow:0 0 16px rgba(46,230,255,.6)}
+.pitch{font-size:18px;max-width:46ch;margin:18px 0 24px;color:var(--fg)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.emblem{justify-self:center;width:min(100%,400px);aspect-ratio:1;max-width:100%}
+.emblem svg{width:100%;height:100%;overflow:visible}
+
+/* Sections */
+section{padding-block:40px}
+.eyebrow{font:600 17px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--pink)}
+h2{margin:6px 0 18px;font:600 clamp(40px,6vw,56px)/.95 var(--display);letter-spacing:.02em;text-wrap:balance}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),transparent),var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.card svg{width:34px;height:34px;color:var(--cyan);filter:drop-shadow(0 0 8px rgba(46,230,255,.55))}
+.card h3{margin:12px 0 6px;font:600 28px/1 var(--display);letter-spacing:.03em}
+.card p{margin:0;color:var(--muted)}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:s}
+.steps li{position:relative;padding:18px 16px 16px;border-top:3px solid var(--line);counter-increment:s;min-width:0}
+.steps li::before{content:counter(s,decimal-leading-zero);display:block;font:700 44px/1 var(--display);color:transparent;-webkit-text-stroke:1.5px var(--pink);margin-bottom:6px}
+.steps li:first-child{border-top-color:var(--pink)}
+.steps strong{display:block;font:600 24px/1.05 var(--display);letter-spacing:.03em}
+.steps span{display:block;color:var(--muted);font-size:15px;margin-top:6px}
+
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.role{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:10px;padding:16px;min-width:0}
+.roles.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.roles.three{grid-template-columns:minmax(0,1fr)}}
+.role strong{display:block;font:600 26px/1 var(--display);letter-spacing:.04em;color:var(--c)}
+.role span{display:block;margin-top:6px;color:var(--muted);font-size:15px}
+
+.join{margin-block:24px 40px;padding:34px 28px;border-radius:16px;border:1px solid var(--line);
+  background:radial-gradient(600px 260px at 0% 0%,rgba(255,62,165,.22),transparent 70%),radial-gradient(600px 260px at 100% 100%,rgba(46,230,255,.18),transparent 70%),var(--surface);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center}
+.join h2{margin:0 0 6px}
+.join p{margin:0;color:var(--muted);max-width:52ch}
+.join code{display:block;margin-top:8px;font-size:13px;color:var(--muted);user-select:all;overflow-wrap:anywhere}
+
+/* Bloc serveur */
+.srv{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:14px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:18px 20px;margin-top:-16px}
+.srv-ico{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--surface2);color:var(--gold)}
+.srv-ico svg{width:26px;height:26px;filter:drop-shadow(0 0 6px rgba(255,209,102,.6))}
+.srv-main{display:grid;gap:2px;min-width:0}
+.srv-main strong{font:600 34px/1 var(--display);letter-spacing:.04em;color:#fff;overflow-wrap:anywhere;user-select:all}
+.srv-main strong.wait{color:var(--muted);user-select:auto}
+.srv-how{font-size:13px;color:var(--muted)}
+.srv-meta{display:flex;gap:22px;margin:0}
+.srv-meta dt{font:600 15px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.srv-meta dd{margin:4px 0 0;font:600 22px/1 var(--display);letter-spacing:.03em}
+@media (max-width:760px){.srv{grid-template-columns:auto minmax(0,1fr)}.srv-meta,.srv .btn{grid-column:1/-1}}
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card.solo{border-color:var(--pink);background:radial-gradient(260px 160px at 100% 0%,rgba(255,62,165,.25),transparent 70%),var(--surface)}
+.card.solo svg{color:var(--pink);filter:drop-shadow(0 0 8px rgba(255,62,165,.7))}
+.card.solo h3{color:var(--pink)}
+@media (max-width:900px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.why{grid-template-columns:minmax(0,1fr)}}
+footer{border-top:1px solid var(--line);padding-block:20px 28px;color:var(--muted);font-size:14px}
+
+/* Animations */
+@keyframes pulse{50%{opacity:.35}}
+@keyframes flicker{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.55}}
+h1 .word{animation:flicker 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ring{transform-origin:200px 200px;animation:spin 40s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr);padding-block:12px 40px}
+  .emblem{width:min(78%,320px);order:-1}
+  .cards{grid-template-columns:minmax(0,1fr)}
+  .steps,.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .join{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:480px){.steps,.roles{grid-template-columns:minmax(0,1fr)} .top .btn span{display:none}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="tag"><b>[</b>MFK<b>]</b> · Rob Run</span>
+    <span id="discordTop"></span>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="status"><i></i>Projet à venir</span>
+      <h1><span class="br">[</span><span class="word">MFK</span><span class="br">]</span></h1>
+      <p class="full">Mother Funcker</p>
+      <p class="pitch" id="pitch"></p>
+      <div class="ctas"><span id="discordHero"></span><a class="btn ghost" href="#projet">Découvrir le projet</a></div>
+    </div>
+    <div class="emblem" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff3ea5"/><stop offset="1" stop-color="#2ee6ff"/></linearGradient>
+        </defs>
+        <g class="ring" fill="none" stroke="url(#gr)" stroke-width="2" opacity=".75">
+          <circle cx="200" cy="200" r="186" stroke-dasharray="4 10"/>
+        </g>
+        <path d="M200 38 330 92v96c0 84-56 140-130 174C126 328 70 272 70 188V92Z" fill="#14102a" stroke="url(#gr)" stroke-width="6" filter="url(#glow)"/>
+        <path d="M200 64 308 109v79c0 70-46 118-108 148-62-30-108-78-108-148v-79Z" fill="none" stroke="#30275a" stroke-width="2"/>
+        <path d="M112 128h176" stroke="#ff3ea5" stroke-width="3" filter="url(#glow)"/>
+        <path d="M112 262h176" stroke="#2ee6ff" stroke-width="3" filter="url(#glow)"/>
+        <text x="200" y="236" text-anchor="middle" font-family="Teko,Arial Narrow,sans-serif" font-weight="700" font-size="112" fill="#fff" filter="url(#glow)" textLength="176" lengthAdjust="spacingAndGlyphs">MFK</text>
+        <text x="200" y="298" text-anchor="middle" font-family="Teko,Arial Narrow,sans-serif" font-weight="600" font-size="22" fill="#a99dca" textLength="128" lengthAdjust="spacing">LOOTY BAY</text>
+        <path d="M184 108l8-14h16l8 14" fill="none" stroke="#ffd166" stroke-width="3" stroke-linejoin="round" filter="url(#glow)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="srv" id="srv">
+    <div class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v6H3ZM3 14h18v6H3ZM7 7h.01M7 17h.01M11 7h6M11 17h6"/></svg></div>
+    <div class="srv-main"><span class="eyebrow">Notre serveur</span><strong id="srvNom"></strong><span class="srv-how">Dans Rob Run, ouvre la liste des serveurs, choisis la région puis cherche ce nom.</span></div>
+    <dl class="srv-meta"><div><dt>Région</dt><dd id="srvReg"></dd></div><div><dt>Ouverture</dt><dd id="srvOuv"></dd></div></dl>
+    <button type="button" class="btn ghost sm" id="srvCopy" hidden>Copier le nom</button>
+  </div>
+
+  <section id="projet">
+    <span class="eyebrow">Le projet</span>
+    <h2>Un clan pour faire trembler Looty Bay</h2>
+    <div class="cards">
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v15H4ZM5 19v2M19 19v2M15 11.5a3 3 0 1 1-6 0 3 3 0 1 1 6 0M12 8.5v1M17.5 9v5"/></svg>
+        <h3>Braquages organisés</h3>
+        <p>Des sorties préparées à plusieurs : repérage, rôles définis, route de fuite et partage du butin décidés avant d'y aller.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7M6 10v10h12V10M10 20v-5h4v5"/></svg>
+        <h3>Une base à nous</h3>
+        <p>Avoir une parcelle à nous pour plus de thune et plus de sécurité.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 1 0 0 6M16 11a3 3 0 1 0 0-6 3 3 0 1 0 0 6M2 20c0-3.5 2.7-6 6-6s6 2.5 6 6M12 20c0-3.5 2.2-6 4-6 3.3 0 6 2.5 6 6"/></svg>
+        <h3>Une vraie équipe</h3>
+        <p>On joue pour gagner, mais surtout pour s'amuser ensemble. Débutants bienvenus : les anciens montrent les routes, les clés et les fuites.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Pourquoi nous</span>
+    <h2>Pourquoi intégrer un clan sérieux ?</h2>
+    <div class="why">
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4l3 2M9 2h6M19 13a7 7 0 1 1-14 0 7 7 0 1 1 14 0"/></svg>
+        <h3>Pas de perte de temps</h3>
+        <p>Les sorties sont préparées et chacun sait ce qu'il a à faire. On joue, on n'attend pas.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+        <h3>De l'expérience vite</h3>
+        <p>Tu progresses plus vite en jouant avec des gens qui connaissent déjà les cibles, les clés et les fuites.</p>
+      </div>
+      <div class="card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V4M4 4h13l-2 4 2 4H4"/></svg>
+        <h3>Des territoires, donc de l'argent</h3>
+        <p>À plusieurs, on prend des territoires rapidement. Plus de territoires, c'est plus d'argent pour tout le clan.</p>
+      </div>
+      <div class="card solo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a7 7 0 0 0-7 7v4l2 2v4h10v-4l2-2v-4a7 7 0 0 0-7-7M9 12h.01M15 12h.01M10 20v-2M14 20v-2"/></svg>
+        <h3>Seul, c'est la mort</h3>
+        <p>Sur Rob Run, jouer seul, c'est se faire dépouiller au premier coin de rue. En clan, on se couvre.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Les prochaines étapes</span>
+    <h2>Comment le clan va se lancer</h2>
+    <ol class="steps">
+      <li><strong>Former le noyau</strong><span>Réunir les premiers membres et fixer les règles du clan.</span></li>
+      <li><strong>Ouvrir le Discord</strong><span>Un seul endroit pour s'organiser, annoncer les sorties et recruter.</span></li>
+      <li><strong>Recruter</strong><span>Accueillir de nouveaux joueurs, avec une période d'essai en sortie.</span></li>
+      <li><strong>Prendre la ville</strong><span>Démarrer sur un serveur neuf, louer la base et enchaîner les braquages.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="eyebrow">On recrute bientôt</span>
+    <h2>Les rôles qu'on cherche</h2>
+    <div class="roles three">
+      <div class="role" style="--c:var(--pink)"><strong>Prêts à foncer</strong><span>Des joueurs qui n'ont pas peur de s'envoyer dans Looty Bay et d'enchaîner les braquages.</span></div>
+      <div class="role" style="--c:var(--cyan)"><strong>Face aux clans russes</strong><span>Tenir tête aux gros clans russes du serveur et leur prendre la ville.</span></div>
+      <div class="role" style="--c:var(--gold)"><strong>T3 rapidement</strong><span>Faire tourner l'argent et la base pour monter au Tier 3 le plus vite possible.</span></div>
+    </div>
+  </section>
+
+  <div class="join">
+    <div>
+      <span class="eyebrow">Rejoindre les [MFK]</span>
+      <h2>Garde un œil sur le Discord</h2>
+      <p id="joinText"></p>
+      <code id="discordCode"></code>
+    </div>
+    <span id="discordJoin"></span>
+  </div>
+</main>
+
+<footer class="wrap">[MFK] Mother Funcker, clan de joueurs non officiel. ROB RUN et son univers appartiennent à Kefir.</footer>
+
+<script>
+// ===== À remplir =====
+const MFK={
+  discord:"https://discord.gg/sztHtFqkz", // lien d'invitation
+  serveur:{nom:"",region:"",ouverture:""}, // nom du serveur tel qu'il s'affiche dans la liste du jeu
+  pitch:"Un clan Rob Run en préparation. On monte une équipe soudée pour braquer Looty Bay, tenir une base et faire parler de nous.",
+};
+const BULLE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H10l-5 4v-4H4Z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></svg>';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ok=/^https:\/\/(discord\.gg|discord\.com)\//.test(MFK.discord);
+const btn=(cls,txt)=>ok?`<a class="btn main ${cls}" href="${esc(MFK.discord)}" target="_blank" rel="noopener">${BULLE}<span>${txt}</span></a>`:`<span class="btn off ${cls}" title="Lien bientôt disponible">${BULLE}<span>${txt} · bientôt</span></span>`;
+document.getElementById('pitch').textContent=MFK.pitch;
+document.getElementById('discordTop').innerHTML=btn('sm','Discord');
+document.getElementById('discordHero').innerHTML=btn('','Rejoindre le Discord');
+document.getElementById('discordJoin').innerHTML=btn('','Rejoindre le Discord');
+document.getElementById('joinText').textContent=ok?"Le Discord est ouvert : présente-toi avec ton pseudo en jeu, tes horaires et le rôle que tu préfères.":"Le Discord ouvre bientôt. Dès qu'il est en ligne, le bouton s'active ici : présente-toi avec ton pseudo en jeu, tes horaires et le rôle que tu préfères.";
+document.getElementById('discordCode').textContent=ok?MFK.discord:'';
+{const s=MFK.serveur,n=document.getElementById('srvNom'),c=document.getElementById('srvCopy');
+  n.textContent=s.nom||'Annoncé bientôt'; n.classList.toggle('wait',!s.nom);
+  document.getElementById('srvReg').textContent=s.region||'À venir';
+  document.getElementById('srvOuv').textContent=s.ouverture||'À venir';
+  if(s.nom){c.hidden=false;c.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(s.nom);c.textContent='Copié';}catch(e){const r=document.createRange();r.selectNodeContents(n);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);c.textContent='Nom sélectionné';}setTimeout(()=>c.textContent='Copier le nom',1800);});}
+}
+</script>
+
+</body>
+</html>
