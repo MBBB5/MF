@@ -94,7 +94,8 @@ h2{margin:6px 0 18px;font:600 clamp(40px,6vw,56px)/.95 var(--display);letter-spa
 .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .card.disc{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;border-color:var(--cyan);background:radial-gradient(420px 180px at 0% 50%,rgba(46,230,255,.16),transparent 70%),var(--surface)}
 .card.disc h3{margin:0 0 4px;color:var(--cyan)}
-.card.disc svg{width:40px;height:40px}
+.card.disc > svg{width:40px;height:40px}
+.card .btn svg{width:22px;height:22px;color:inherit;filter:none}
 @media (max-width:760px){.card.disc{grid-template-columns:auto minmax(0,1fr)}.card.disc #discordWhy{grid-column:1/-1}}
 .card.solo{border-color:var(--pink);background:radial-gradient(260px 160px at 100% 0%,rgba(255,62,165,.25),transparent 70%),var(--surface)}
 .card.solo svg{color:var(--pink);filter:drop-shadow(0 0 8px rgba(255,62,165,.7))}
