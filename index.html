@@ -91,6 +91,30 @@ h2{margin:6px 0 18px;font:600 clamp(40px,6vw,56px)/.95 var(--display);letter-spa
 .srv-meta dt{font:600 15px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .srv-meta dd{margin:4px 0 0;font:600 22px/1 var(--display);letter-spacing:.03em}
 @media (max-width:760px){.srv{grid-template-columns:auto minmax(0,1fr)}.srv-meta,.srv .btn{grid-column:1/-1}}
+/* Transparence */
+.intro{font-size:17px;max-width:62ch;margin:-6px 0 22px;color:var(--muted)}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:22px;align-items:start}
+.tr-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:t}
+.tr-steps li{counter-increment:t;display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tr-steps li::before{content:counter(t);grid-row:1/3;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 26px/1 var(--display);color:#03121a;background:var(--gold);box-shadow:0 0 14px rgba(255,209,102,.5)}
+.tr-steps strong{font:600 24px/1.05 var(--display);letter-spacing:.03em}
+.tr-steps span{color:var(--muted);font-size:15px}
+.tr-steps b{color:var(--cyan);font-weight:600}
+.receipt{background:var(--surface2);border:1px solid var(--gold);border-radius:14px;padding:18px 20px;box-shadow:0 0 30px rgba(255,209,102,.12);font-variant-numeric:tabular-nums}
+.rc-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rc-chan{font:600 20px/1 var(--display);letter-spacing:.04em;color:var(--cyan)}
+.rc-ex{font:600 14px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(255,209,102,.5);border-radius:4px;padding:4px 6px 2px}
+.rc-title{font:600 30px/1 var(--display);letter-spacing:.03em;margin:12px 0 10px}
+.rc-lines{margin:0;display:grid}
+.rc-lines div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px dashed var(--line)}
+.rc-lines dt{color:var(--muted)}
+.rc-lines dd{margin:0;font-weight:600}
+.rc-lines .rc-sep dd{color:var(--gold)}
+.rc-parts{list-style:none;margin:6px 0 0;padding:10px 0 0;border-top:1px solid var(--line);display:grid;gap:6px}
+.rc-parts li{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.rc-parts b{color:var(--cyan);font-weight:600}
+.rc-foot{margin:14px 0 0;font-size:13px;color:var(--muted)}
+@media (max-width:860px){.tr{grid-template-columns:minmax(0,1fr)}}
 .why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .card.disc{grid-column:1/-1;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;border-color:var(--cyan);background:radial-gradient(420px 180px at 0% 50%,rgba(46,230,255,.16),transparent 70%),var(--surface)}
 .card.disc h3{margin:0 0 4px;color:var(--cyan)}
@@ -220,6 +244,36 @@ h1 .word{animation:flicker 5s linear infinite}
         <div class="disc-txt"><h3>Un Discord pour grouper vite</h3>
         <p>Tu te connectes, tu dis que tu es dispo, et tu as un groupe en quelques minutes. Plus besoin de chercher des coéquipiers en jeu.</p></div>
         <span id="discordWhy"></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="transparence">
+    <span class="eyebrow">Transparence</span>
+    <h2>La thune, on la partage au grand jour</h2>
+    <p class="intro">Chez les [MFK], personne ne se demande où est passé l'argent. Chaque partage est annoncé, calculé et publié dans un salon Discord dédié, visible par tous les membres.</p>
+    <div class="tr">
+      <ol class="tr-steps">
+        <li><strong>Avant la sortie</strong><span>On annonce qui participe et la règle de partage.</span></li>
+        <li><strong>Après la vente</strong><span>Le total vendu est posté avec une capture du receleur.</span></li>
+        <li><strong>Le partage</strong><span>Chaque joueur reçoit sa part, la caisse du clan reçoit la sienne.</span></li>
+        <li><strong>Tout est publié</strong><span>Chaque partage reste dans le salon <b>#partage-butin</b>. N'importe quel membre peut vérifier.</span></li>
+      </ol>
+      <div class="receipt" aria-label="Exemple de message de partage">
+        <div class="rc-head"><span class="rc-chan">#partage-butin</span><span class="rc-ex">Exemple</span></div>
+        <div class="rc-title">Sortie Station-service</div>
+        <dl class="rc-lines">
+          <div><dt>Total vendu au receleur</dt><dd>13 300 $</dd></div>
+          <div><dt>Caisse du clan (20 %)</dt><dd>2 660 $</dd></div>
+          <div class="rc-sep"><dt>Reste à partager</dt><dd>10 640 $</dd></div>
+        </dl>
+        <ul class="rc-parts">
+          <li><span>Joueur 1 · ouvreur</span><b>2 660 $</b></li>
+          <li><span>Joueur 2 · porteur</span><b>2 660 $</b></li>
+          <li><span>Joueur 3 · chauffeur</span><b>2 660 $</b></li>
+          <li><span>Joueur 4 · couverture</span><b>2 660 $</b></li>
+        </ul>
+        <p class="rc-foot">La caisse du clan paie la base, le loyer du terrain, le blanchiment et le matériel commun. Son solde est publié chaque semaine.</p>
       </div>
     </div>
   </section>
